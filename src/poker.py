@@ -124,7 +124,7 @@ def test_deck():
     print(deck)    # Prints the updated representation of the deck
 #test_deck()
 
-def rank_counts(cards):
+def rank_counts(cards): #obsolete function due to rank_counts_advanced
     """Returns a dictionary of the count of each rank in the hand.
     """
     """Returns a dictionary of the count of each rank in the hand, sorted by frequency and then by rank value."""
@@ -268,14 +268,15 @@ def is_full_house(cards, rank_counts):
         # Check for a pair
         for rank in rank_counts[2]:
             if rank != three_rank:
-                full_house_cards = [card for card in cards if card.rank == three_rank][:3] + [card for card in cards if card.rank == rank][:2]
+                full_house_cards = [card for card in cards if card.rank == three_rank][:3] + [card for card in cards if card.rank == rank][:2] #
                 return True, full_house_cards
     return False, []
 def test_is_full_house():
-    cards = [[Card('6', 'Spades'), Card('Ace', 'Hearts'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('2', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')],
-                [Card('6', 'Spades'), Card('3', 'Spades'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('2', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')],
-                [Card('6', 'Spades'), Card('3', 'Spades'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('3', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')],
-                [Card('6', 'Spades'), Card('Ace', 'Hearts'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('3', 'Diamonds'), Card('4', 'Clubs'), Card('5', 'Hearts')]]
+    cards = [[Card('6', 'Spades'), Card('Ace', 'Hearts'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('2', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')], #regular flush
+                [Card('6', 'Spades'), Card('3', 'Spades'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('2', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')], #2 sets
+                [Card('6', 'Spades'), Card('3', 'Spades'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('3', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')], #quads and par
+                [Card('6', 'Spades'), Card('3', 'Spades'), Card('2', 'Spades'), Card('8', 'Hearts'), Card('10', 'Diamonds'), Card('3', 'Clubs'), Card('3', 'Hearts')], #set, not pair
+                [Card('6', 'Spades'), Card('Ace', 'Hearts'), Card('2', 'Spades'), Card('2', 'Hearts'), Card('3', 'Diamonds'), Card('4', 'Clubs'), Card('5', 'Hearts')]] #straight
     for card in cards:
         print(is_full_house(card, rank_counts_advanced(card)))
 #test_is_full_house()
@@ -432,7 +433,7 @@ def test_evaluate_hand():
         Card('4', 'Spades')
     ]
     hand = Hand(cards)
-    print(hand.evaluate_hand()) #
+    print(hand.evaluate_hand()) 
     cards = [
         Card('6', 'Spades'),
         Card('Ace', 'Hearts'), 
