@@ -96,6 +96,15 @@ class Deck:
         """
         self.cards = [card for card in self.cards if card not in cards_to_remove]
 
+    def remove_specific_card(self, rank, suit):
+        """Removes a specific card from the deck.
+
+        Args:
+            rank (str): The rank of the card to remove.
+            suit (str): The suit of the card to remove
+        """
+        self.cards = [card for card in self.cards if not (card.rank == rank and card.suit == suit)]
+
     def deal(self, count=1):
         """Deals 'count' number of cards from the deck. Returns a list of cards.
         
